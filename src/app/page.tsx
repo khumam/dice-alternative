@@ -69,53 +69,57 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen w-full bg-zinc-800 p-6">
-        <div className="container mx-auto w-full min-h-[300px] flex justify-center gap-4 flex-col my-6">
-          <h1 className="text-5xl text-zinc-100 leading-relaxed">
-            Dice Alternative
-          </h1>
-          <div className="max-w-[800px] mb-6">
-            <p className="text-lg text-zinc-300 leading-relaxed">
-              Generate pre defined move set value without rolling your dice.
+      <div className="min-h-screen w-full bg-white p-6">
+        <div className="container mx-auto w-full min-h-[300px] flex justify-center gap-4 flex-col mt-6">
+          <div className="border border-b-4 border-zinc-800 rounded-lg p-4">
+            <h1 className="text-5xl text-zinc-900 leading-relaxed">
+              Dice Alternative
+            </h1>
+          </div>
+          <div className="w-full mb-6 border border-b-4 border-zinc-800 p-4 rounded-lg">
+            <p className="text-lg text-zinc-700 leading-relaxed">
+              Generate predefined move set values without rolling your dice.
               Every time you reload the page, it will generate up to 200 move
-              set value. Click save to mark the seed and it will saved to your
-              local storage. So you wont lose the pattern. Next you can use the
-              value iteratively for move, attack, or any action on your game.
-              There is no luck because its already defined your move set. Click
-              the tile to mark as used.
+              set values. Click save to mark the seed, and it will be saved to your
+              local storage, so you won&apos;t lose the pattern. Next, you can use the
+              values iteratively for moves, attacks, or any actions in your game.
+              There is no luck involved because your move set is already defined. Click
+              the tile to mark it as used.
             </p>
           </div>
+        </div>
+        <div className="container mx-auto mb-4">
           <div className="flex items-center w-full gap-4">
             <Button
               onClick={saveMoveSets}
-              className="bg-zinc-200 text-zinc-900 hover:bg-zinc-300"
+              className="bg-zinc-100 text-zinc-900 hover:bg-zinc-300 border border-b-4 border-zinc-800 h-[52px] font-semibold w-full"
             >
               Save Move Set
             </Button>
             <Button
               onClick={clearMoveSets}
-              className="bg-zinc-200 text-zinc-900 hover:bg-zinc-300"
+              className="bg-zinc-100 text-zinc-900 hover:bg-zinc-300 border border-b-4 border-zinc-800 h-[52px] font-semibold w-full"
             >
               Clear Move Set
             </Button>
           </div>
         </div>
-        <div className="container mx-auto grid grid-cols-6 md:grid-cols-10 gap-2 mb-8">
+        <div className="container mx-auto grid grid-cols-4 md:grid-cols-8 gap-2 mb-8">
           {moveSets.map((moveSet: IMoveSet, index: number) => (
             <Button
               key={index}
-              className={`w-full h-full bg-zinc-700 border border-zinc-800 flex justify-center items-center text-zinc-100 ${
+              className={`w-full bg-zinc-100 border border-b-4 border-zinc-800 h-[52px] font-semibold flex justify-center items-center text-zinc-700 text-xl hover:bg-zinc-200 ${
                 moveSet.used ? "opacity-50" : "cursor-pointer"
               }`}
               onClick={() => useMoveSets(index)}
               disabled={moveSet.used}
             >
-              <span>{moveSet.value}</span>
+              <span>{moveSet.used ? "-" : moveSet.value}</span>
             </Button>
           ))}
         </div>
       </div>
-      <Toaster />
+      <Toaster richColors />
     </>
   );
 }
