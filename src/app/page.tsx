@@ -27,7 +27,7 @@ const Home: React.FC = () => {
   const generateMoveSets = () => {
     const newMoveSets: IMoveSet[] = Array.from({ length: 200 }, () => ({
       used: false,
-      value: Math.floor(Math.random() * (6 - 1) + 1),
+      value: Math.ceil(Math.random() * (6 - 0) + 0),
     }));
     setMoveSets(newMoveSets);
     toast.success("New move sets generated");
